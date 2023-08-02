@@ -1,0 +1,12 @@
+diff --git a/board/lan966x/gen-uboot.rb b/board/lan966x/gen-uboot.rb
+index 0f68e4c..7e84f34 100755
+--- a/board/lan966x/gen-uboot.rb
++++ b/board/lan966x/gen-uboot.rb
+@@ -1,6 +1,6 @@
+ #!/usr/bin/env ruby
+ 
+-$path = "output/build_arm_bootloaders_lan966x/images/"
++$path = ENV["BINARIES_DIR"]
+ $version = "1.0.4"
+ 
+ system("wget https://github.com/microchip-ung/arm-trusted-firmware/releases/download/mchp_v#{$version}/lan966x_b0-release-bl2normal-auth.fip")
