@@ -16,7 +16,7 @@ P=2023.06
 # (1) --- Get the BSP source for 2023.06 (as defined with 'P') if it does not exist.
 #
 if [ ! -d mscc-brsdk-source-$P ]; then
-#    wget http://mscc-ent-open-source.s3-eu-west-1.amazonaws.com/public_root/bsp/mscc-brsdk-source-$P.tar.gz
+    wget http://mscc-ent-open-source.s3-eu-west-1.amazonaws.com/public_root/bsp/mscc-brsdk-source-$P.tar.gz
     tar xzf mscc-brsdk-source-$P.tar.gz
 fi
 
