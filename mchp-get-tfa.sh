@@ -1,24 +1,36 @@
 
 # This script is called mchp-get-tfa.sh
 
-wget https://github.com/microchip-ung/arm-trusted-firmware/archive/refs/tags/mchp_v1.0.3.tar.gz
-tar xzf mchp_v1.0.3.tar.gz
-cd arm-trusted-firmware-mchp_v1.0.3
+# Note: The binary BSP need to be installed for this script to work since the
+#  u-boot-lan966x_evb_atf.bin in this BSP need to be available. Ths can be done by running:
+#   $ wget http://mscc-ent-open-source.s3-eu-west-1.amazonaws.com/public_root/bsp/mscc-brsdk-arm-2023.06.tar.gz
+#   $ tar xzf /mscc-brsdk-arm-2023.06.tar.gz -C /opt/mscc
+#
+#  Assuming this is in place, lets continue
 
-# Build the fip image.
-# This require the the binary BSP to be installed
 #
-dr ./script/build.rb -p lan966x_b0
+# (1) --- get the ATF / TF-A tool
+#
+wget https://github.com/microchip-ung/arm-trusted-firmware/archive/refs/tags/mchp_v1.0.5.tar.gz
+tar xzf mchp_v1.0.5.tar.gz
+cd arm-trusted-firmware-mchp_v1.0.5
 
-# If you have build your own U-Boot from the source BSP,
-# i.e. have run
+
+# (2) --- Build the fip image.
+# 
+dr ./scripts/build.rb -p lan966x_b0
+
+
+# Note: If you have build your own U-Boot from the source BSP, lets call it u-boot.bin,
+#  then copy it to the arm-trusted-firmware-mchp_v1.0.5 folder and run
 #
-# $ dr ./build.rb build --configs arm_bootloaders_lan966
+#   $ dr ./scripts/build.rb -p lan966x_b0 --bl33-blob u-boot.bin
 #
-# then the result is in output/build_arm_bootloaders_lan966x/images/u-boot-lan966x_evb_atf.bin
+#  The reason u-boot.bin need to be in this location is, that docker can not see outside
+#  this sub-tree.
+
+# Note: Howto install Docker is described in the BSP documentation 
+#  http://mscc-ent-open-source.s3-eu-west-1.amazonaws.com/public_root/bsp/mscc-brsdk-doc-latest.html
 #
-# Copy that file to arm-trusted-firmware-mchp_v1.0.3 and run
-# $ dr ./script/build.rb -p lan966x_b0 -l u-boot-lan966x_evb_atf.bin
-# The file (u-boot-lan966x_evb_atf.bin) has to be in the arm-trusted-firmware-mchp_v1.0.3
-# folder, since docker (dr) can not see outside its source tree. You can think of it
-# having done a chroot.
+#  But you can also use the mchp-get-docker.sh which is found in the same location as
+#  this file (one one you are reading).
