@@ -5,7 +5,13 @@ if [ ! -e ddr-umctl ]; then
     git clone https://github.com/microchip-ung/ddr-umctl.git
 fi
 
-# (2) --- Connect to the arm-trusted-firmware-xxxx folser, that
+# (2) --- Build DDR configuration file for LAN966x
+#
+cd ddr-umctl
+./scripts/gen_cfg.rb -f source configs/profiles/lan966x.yaml > $DDR_CONFIG_NEW
+cd ..
+
+# (3) --- Connect to the arm-trusted-firmware-xxxx folser, that
 #         mch-get-tfa.sh has created. You may need to adjust
 #         $RELEASE below, the that it match arm-trusted-firmware-$RELEASE
 #
@@ -13,9 +19,8 @@ RELEASE=2.8.8-mchp0
 
 if [ ! -e arm-trusted-firmware-$RELEASE ]; then
 
-
     echo "The folder arm-trusted-firmware-$RELEASE does not exist."
-    echo "So adjust the   \$RELEASE=$RELEASE   variable in this script"
+    echo "So the builded configuration is not compared with an existing one."
 
 else 
 
@@ -24,13 +29,6 @@ else
 
     DDR_CONFIG_NEW=my-lan966x_ddr_config.c
     DDR_CONFIG_ORG=$DDR_PATH_ORG/lan966x_ddr_config.c
-
-
-    # (3) --- Build DDR configuration file for LAN966x
-    #
-    cd ddr-umctl
-    ./scripts/gen_cfg.rb -f source configs/profiles/lan966x.yaml > $DDR_CONFIG_NEW
-    cd ..
     
     # (4) --- Check the difference between 
     diff  ddr-umctl/$DDR_CONFIG_NEW  $DDR_CONFIG_ORG
