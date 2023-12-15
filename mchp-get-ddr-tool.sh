@@ -7,6 +7,8 @@ fi
 
 # (2) --- Build DDR configuration file for LAN966x
 #
+DDR_CONFIG_NEW=my-lan966x_ddr_config.c
+
 cd ddr-umctl
 ./scripts/gen_cfg.rb -f source configs/profiles/lan966x.yaml > $DDR_CONFIG_NEW
 cd ..
@@ -27,7 +29,6 @@ else
     
     DDR_PATH_ORG=arm-trusted-firmware-$RELEASE/plat/microchip/lan966x/common
 
-    DDR_CONFIG_NEW=my-lan966x_ddr_config.c
     DDR_CONFIG_ORG=$DDR_PATH_ORG/lan966x_ddr_config.c
     
     # (4) --- Check the difference between 
