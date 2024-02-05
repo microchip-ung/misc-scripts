@@ -47,4 +47,4 @@ dr ./scripts/build.rb -p lan966x_b0
 #  http://mscc-ent-open-source.s3-eu-west-1.amazonaws.com/public_root/bsp/mscc-brsdk-doc-latest.html
 #
 #  But you can also use the mchp-get-docker.sh which is found in the same location as
-#  this file (one one you are reading).
+#  this file (the one you are reading).
