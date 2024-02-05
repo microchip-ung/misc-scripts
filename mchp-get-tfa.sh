@@ -38,7 +38,7 @@ dr ./scripts/build.rb -p lan966x_b0
 # Note: If you have build your own U-Boot from the source BSP, lets call it u-boot.bin,
 #  then copy it to the arm-trusted-firmware-$RELEASE folder and run
 #
-#   $ dr ./scripts/build.rb -p lan966x_b0 --bl33-blob u-boot.bin
+#   $ dr ./scripts/build.rb -p lan966x_b0 --bl33_blob u-boot.bin
 #
 #  The reason u-boot.bin need to be in this location is, that docker can not see outside
 #  this sub-tree.
