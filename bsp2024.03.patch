@@ -1,0 +1,12 @@
+diff --git a/board/beaglebone/gen-image.rb b/board/beaglebone/gen-image.rb
+index 00d3fd4..488fae9 100755
+--- a/board/beaglebone/gen-image.rb
++++ b/board/beaglebone/gen-image.rb
+@@ -1,6 +1,6 @@
+ #!/usr/bin/env ruby
+ 
+-$path = "output/build_arm_bootloaders_bbb/images"
++$path = ENV["BINARIES_DIR"]
+ $output = "#{$path}/bbb.img"
+ 
+ # create image
