@@ -78,7 +78,7 @@ ls mesa/demo/*.itb
 
 # (2.3) --- Put to image on the tftp server
 #
-tftppath="/tftpboot/<user>
+tftppath="/tftpboot/<user>"
 if [ -d $tftppath ]; then
     cp mesa/demo/*.itb $tftppath
     echo "--->Image has been copied to tftp server at ${tftppath}"
