@@ -37,8 +37,15 @@ ls -l bbb/images
 echo "--->Put the bbb.img on a sd card with 'dd if=images/bbb.img of=/dev/<the-sd-card>'"
 cd ..
 
-# (1.5) --- With the sdcard in the beaglebone, you can boot from it by holding down the
-#           boot button on the flip side of the sdcard when powering on the board.
+# (1.5) --- One way to get the image on the SDCard is to boot the BBB the normal way into debian
+#           The username is "debian" and password "temppwd".
+#           Then board must be on your network, and you can find its IP address by running 'ip addr show'
+#           Then on you build machine run 'scp bbb.img debian@<BBB-IP>:' where <BBB-IP> is the IP address
+#           you just found of the BBB.
+#           Then login in the terminal on the BBB and run 'sudo dd if=bbb.img of=/dev/mmcblk0'
+
+# (1.6) --- With the sdcard in the beaglebone, you can boot from it by holding down the
+#           boot button (s2) on the flip side of the sdcard when powering on the board.
 #
 #           You'll need a serial terminal on the board so you can see that is stops in u-boot.
 #
