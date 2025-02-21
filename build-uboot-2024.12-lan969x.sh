@@ -115,8 +115,10 @@ fi
 #           Then you can disbale the (A) section and enable the (A.1) section to make sure everything is build consistently.
 #
 if [ "$AA" = "rebuild" ]; then
+    cd mscc-brsdk-source-$R
     dr make  BR2_EXTERNAL=./external  O=myuboot  mscc-muboot-rebuild
     dr make  BR2_EXTERNAL=./external  O=myuboot
+    cd ..
 fi
 
 
